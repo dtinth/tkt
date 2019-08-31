@@ -83,3 +83,9 @@ Features:
 #### `.debug(...args)` <br>`.info(...args)` <br>`.warn(...args)` <br>`.error(...args)`
 
 Logs stuff.
+
+## Invariant
+
+### `invariant`
+
+See [invariant](https://github.com/zertosh/invariant) npm package.
