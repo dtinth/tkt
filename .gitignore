@@ -33,7 +33,8 @@ node_modules
 .LSOverride
 
 # Icon must ends with two \r.
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -43,3 +44,5 @@ Icon
 .Trashes
 
 /lib/
+/api/
+/tmp/
