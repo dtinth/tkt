@@ -1,0 +1,69 @@
+= interface ICli
+
+A command-line interface created by the xref:tkt.adoc#tkt_cli_function_1[cli] function.
+
+
+
+== Methods
+
+[id="tkt_ICli_command_member_1"]
+=== command(command, description, options, handler)
+
+========
+
+Register a command.
+
+
+
+.Parameters
+[%header%footer,cols="2,3,4",caption=""]
+|===
+|Name |Type |Description
+
+m|command
+m|string \| ReadonlyArray&lt;string&gt;
+|The command name.
+
+m|description
+m|string
+|The command description.
+
+m|options
+m|LocalOptions
+|The options accepted by the command.
+
+m|handler
+m|(args: CliArguments&lt;LocalOptions&gt;) =&gt; void
+|The command handler. It may return a promise. If the promise is rejected, the CLI will exit with an non-zero code.
+
+s|Returns
+m|xref:tkt_ICli_interface.adoc[ICli]&lt;GlobalOptions&gt;
+|
+|===
+
+.Signature
+[source,typescript]
+----
+command<LocalOptions extends {
+        [key: string]: yargs.Options;
+    }>(command: string | ReadonlyArray<string>, description: string, options: LocalOptions, handler: (args: CliArguments<LocalOptions>) => void): ICli<GlobalOptions>;
+----
+
+========
+[id="tkt_ICli_parse_member_1"]
+=== parse()
+
+========
+
+Parses the command-line arguments and invoke the registered command handler.
+
+
+
+
+.Signature
+[source,typescript]
+----
+parse(): void;
+----
+
+========

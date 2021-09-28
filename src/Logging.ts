@@ -1,11 +1,15 @@
 import pino from 'pino'
 
+/**
+ * A logger instance created by the {@link (logger:function)} function or the {@link ILogger.child} method.
+ * @public
+ */
 export interface ILogger {
   child(name: string): ILogger
-  debug: LogFn
-  info: LogFn
-  warn: LogFn
-  error: LogFn
+  debug(...args: any[]): void
+  info(...args: any[]): void
+  warn(...args: any[]): void
+  error(...args: any[]): void
 }
 
 type LogFn = {
@@ -29,6 +33,11 @@ class LoggerWrapper implements ILogger {
   error: LogFn = (thing, ...args) => this.instance.error(thing, ...args)
 }
 
+/**
+ * Create an {@link ILogger} instance with a given name.
+ * @param name - The name to use for logging.
+ * @public
+ */
 export function logger(name: string): ILogger {
   if (!rootLogger) {
     rootLogger = pino({
@@ -41,10 +50,21 @@ export function logger(name: string): ILogger {
   return new LoggerWrapper(rootLogger, name)
 }
 
-logger.forcePretty = function() {
-  forceMode = 'pretty'
-}
+/**
+ * @public
+ */
+export namespace logger {
+  /**
+   * Force the logger to write pretty-printed output rather than JSON.
+   */
+  export function forcePretty() {
+    forceMode = 'pretty'
+  }
 
-logger.forceJSON = function() {
-  forceMode = 'json'
+  /**
+   * Force the logger to write JSON output.
+   */
+  export function forceJSON() {
+    forceMode = 'json'
+  }
 }

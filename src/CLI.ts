@@ -1,6 +1,6 @@
 import yargs from 'yargs'
 
-const wrap = <T extends yargs.Argv<any>>(yargs: T): CLI<T> => ({
+const wrap = <T extends yargs.Argv<any>>(yargs: T): ICli<T> => ({
   parse() {
     yargs.parse()
   },
@@ -9,22 +9,49 @@ const wrap = <T extends yargs.Argv<any>>(yargs: T): CLI<T> => ({
   },
 })
 
-type CLI<T> = {
-  parse(): void
-  command<O extends { [key: string]: yargs.Options }>(
+/**
+ * A command-line interface created by the {@link cli} function.
+ * @public
+ */
+export interface ICli<GlobalOptions> {
+  /**
+   * Register a command.
+   *
+   * @param command - The command name.
+   * @param description - The command description.
+   * @param options - The options accepted by the command.
+   * @param handler - The command handler.
+   *  It may return a promise.
+   *  If the promise is rejected, the CLI will exit with an non-zero code.
+   */
+  command<LocalOptions extends { [key: string]: yargs.Options }>(
     command: string | ReadonlyArray<string>,
     description: string,
-    builder: O,
-    handler: (args: yargs.Arguments<yargs.InferredOptionTypes<O>>) => void,
-  ): CLI<T>
+    options: LocalOptions,
+    handler: (args: CliArguments<LocalOptions>) => void,
+  ): ICli<GlobalOptions>
+
+  /**
+   * Parses the command-line arguments and invoke the registered command handler.
+   */
+  parse(): void
 }
 
-export function cli<T extends {}>(options: T = {} as any) {
-  return wrap(
-    yargs
-      .demandCommand()
-      .strict()
-      .help()
-      .options(options),
-  )
+/**
+ * @public
+ */
+export type CliArguments<O extends { [key: string]: yargs.Options }> =
+  yargs.Arguments<yargs.InferredOptionTypes<O>>
+
+/**
+ * Creates a command-line interface.
+ *
+ * @param globalOptions - The global options which apply to all commands.
+ * @returns An {@link ICli} instance.
+ * @public
+ */
+export function cli<GlobalOptions extends {}>(
+  globalOptions: GlobalOptions = {} as any,
+) {
+  return wrap(yargs.demandCommand().strict().help().options(globalOptions))
 }
