@@ -1,3 +1,60 @@
 = tkt
 
 `tkt`, pronounced **toolkit**, is an opinionated toolkit for building Node.js applications. Comes with good IntelliSense support thanks to TypeScript.
+
+== CLI
+
+Most Node.js applications have a CLI entry point. The CLI API allows you to quickly create a CLI application.
+
+Behind the scenes, it is powered by `yargs` with a reduced API surface and sensible defaults.
+
+Features:
+
+* Strict by default. Unknown commands and arguments are rejected.
+* Supports `--help` generation.
+* Async errors result in failure exit code by default.
+
+[source,javascript]
+----
+require('tkt')
+  .cli()
+  .command(
+    '$0',
+    'Default command',
+    {
+      x: { type: 'number', desc: 'X coordinate', demand: true },
+      y: { type: 'number', desc: 'Y coordinate', demand: true },
+    },
+    async args => {
+      console.log([args.x, args.y])
+    },
+  )
+  .command(
+    'greet <name>',
+    'Displays a greeting',
+    {
+      name: { type: 'string' },
+    },
+    async args => {
+      console.log(`Hello, ${args.name}`)
+    },
+  )
+  .parse()
+----
+
+To learn more, see the xref:api:tkt.adoc#tkt_cli_function_1[cli()] function documentation.
+
+== Structured logging
+
+Powered by Pino.
+
+* Structured logging (JSON log output).
+* When connected to TTY, log output is prettified.
+
+To learn more, see the xref:api:tkt.adoc#tkt_logger_function_1[logger()] function documentation.
+
+== Invariant
+
+See https://github.com/zertosh/invariant[invariant] npm package.
+
+To learn more, see the xref:api:tkt.adoc#tkt_invariant_function_1[invariant()] function documentation.

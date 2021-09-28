@@ -35,7 +35,7 @@ Creates a command-line interface.
 
 m|globalOptions
 m|GlobalOptions
-|The global options which apply to all commands.
+|The global options which apply to all commands. See https://github.com/yargs/yargs/blob/master/docs/api.md#optionskey-opt[yargs API] for details.
 
 s|Returns
 m|xref:tkt_ICli_interface.adoc[ICli]&lt;\~yargs.Argv&lt;~yargs.Omit&lt;{}, keyof GlobalOptions&gt; & ~yargs.InferredOptionTypes&lt;GlobalOptions&gt;&gt;&gt;

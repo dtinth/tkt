@@ -17,12 +17,17 @@ export interface ICli<GlobalOptions> {
   /**
    * Register a command.
    *
-   * @param command - The command name.
-   * @param description - The command description.
-   * @param options - The options accepted by the command.
+   * @param command - The command string.
+   *  Use `$0` for default command.
+   *  Add `<arg>` for required positional parameter.
+   *  Add `[arg]` for optional positional parameter.
+   *  See {@link https://github.com/yargs/yargs/blob/master/docs/advanced.md#commands | yargs Command API documentation} for details.
+   * @param description - The command description, the text to show in `--help` menu.
+   * @param options - The options accepted by the command. See {@link https://github.com/yargs/yargs/blob/master/docs/api.md#optionskey-opt | yargs API documentation} for details.
    * @param handler - The command handler.
    *  It may return a promise.
-   *  If the promise is rejected, the CLI will exit with an non-zero code.
+   *  If the promise is rejected, the CLI will exit with the help text and a non-zero code.
+   * @returns An instance of {@link ICli} for chaining.
    */
   command<LocalOptions extends { [key: string]: yargs.Options }>(
     command: string | ReadonlyArray<string>,
@@ -46,7 +51,7 @@ export type CliArguments<O extends { [key: string]: yargs.Options }> =
 /**
  * Creates a command-line interface.
  *
- * @param globalOptions - The global options which apply to all commands.
+ * @param globalOptions - The global options which apply to all commands. See {@link https://github.com/yargs/yargs/blob/master/docs/api.md#optionskey-opt | yargs API} for details.
  * @returns An {@link ICli} instance.
  * @public
  */

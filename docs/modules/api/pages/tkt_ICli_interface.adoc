@@ -22,23 +22,23 @@ Register a command.
 
 m|command
 m|string \| ReadonlyArray&lt;string&gt;
-|The command name.
+|The command string. Use `$0` for default command. Add `<arg>` for required positional parameter. Add `[arg]` for optional positional parameter. See https://github.com/yargs/yargs/blob/master/docs/advanced.md#commands[yargs Command API documentation] for details.
 
 m|description
 m|string
-|The command description.
+|The command description, the text to show in `--help` menu.
 
 m|options
 m|LocalOptions
-|The options accepted by the command.
+|The options accepted by the command. See https://github.com/yargs/yargs/blob/master/docs/api.md#optionskey-opt[yargs API documentation] for details.
 
 m|handler
 m|(args: CliArguments&lt;LocalOptions&gt;) =&gt; void
-|The command handler. It may return a promise. If the promise is rejected, the CLI will exit with an non-zero code.
+|The command handler. It may return a promise. If the promise is rejected, the CLI will exit with the help text and a non-zero code.
 
 s|Returns
 m|xref:tkt_ICli_interface.adoc[ICli]&lt;GlobalOptions&gt;
-|
+|An instance of xref:tkt_ICli_interface.adoc[ICli] for chaining.
 |===
 
 .Signature
