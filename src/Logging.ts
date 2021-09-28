@@ -34,6 +34,8 @@ class LoggerWrapper implements ILogger {
 }
 
 /**
+ * Create an {@link ILogger} instance with a given name.
+ * @param name - The name to use for logging.
  * @public
  */
 export function logger(name: string): ILogger {
@@ -52,10 +54,16 @@ export function logger(name: string): ILogger {
  * @public
  */
 export namespace logger {
+  /**
+   * Force the logger to write pretty-printed output rather than JSON.
+   */
   export function forcePretty() {
     forceMode = 'pretty'
   }
 
+  /**
+   * Force the logger to write JSON output.
+   */
   export function forceJSON() {
     forceMode = 'json'
   }

@@ -1,0 +1,3 @@
+= tkt
+
+`tkt`, pronounced **toolkit**, is an opinionated toolkit for building Node.js applications. Comes with good IntelliSense support thanks to TypeScript.

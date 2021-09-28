@@ -8,6 +8,10 @@ import invariantLib from 'invariant'
  * @param extra - Optional values used to populate the message format string.
  * @public
  */
-export function invariant(value: any, message?: string, ...extra: any[]): void {
+export function invariant(
+  value: any,
+  message: string,
+  ...extra: any[]
+): asserts value {
   invariantLib(value, message, ...extra)
 }

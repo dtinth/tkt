@@ -13,7 +13,7 @@ const wrap = <T extends yargs.Argv<any>>(yargs: T): ICli<T> => ({
  * A command-line interface created by the {@link cli} function.
  * @public
  */
-export interface ICli<T> {
+export interface ICli<GlobalOptions> {
   /**
    * Register a command.
    *
@@ -24,12 +24,12 @@ export interface ICli<T> {
    *  It may return a promise.
    *  If the promise is rejected, the CLI will exit with an non-zero code.
    */
-  command<O extends { [key: string]: yargs.Options }>(
+  command<LocalOptions extends { [key: string]: yargs.Options }>(
     command: string | ReadonlyArray<string>,
     description: string,
-    options: O,
-    handler: (args: CliArguments<O>) => void,
-  ): ICli<T>
+    options: LocalOptions,
+    handler: (args: CliArguments<LocalOptions>) => void,
+  ): ICli<GlobalOptions>
 
   /**
    * Parses the command-line arguments and invoke the registered command handler.
