@@ -1,6 +1,6 @@
 {
   "name": "tkt",
-  "version": "2.0.0-1",
+  "version": "2.0.0",
   "description": "Opinionated toolkit for building Node.js applications. Options parsing (yargs), structured logging (bolt+bistre), error wrapping (VError), and other utility functions.",
   "main": "./lib/index.js",
   "typings": "./lib/index.d.js",
