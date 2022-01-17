@@ -31,5 +31,6 @@
     "lib",
     "src",
     "tkt.api.json"
-  ]
+  ],
+  "docModel": "tkt.api.json"
 }
