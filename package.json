@@ -6,17 +6,14 @@
   "typings": "./lib/index.d.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepare": "rm -rf lib && tsc",
-    "api": "./scripts/generate-api-docs.sh"
+    "prepare": "rm -rf lib && tsc && ./scripts/generate-api-docs.sh"
   },
   "author": "Thai Pangsakulyanont <dtinth@spacet.me> (http://dt.in.th/)",
   "license": "MIT",
   "devDependencies": {
-    "@microsoft/api-documenter": "^7.13.44",
     "@microsoft/api-extractor": "^7.18.7",
     "@types/invariant": "^2.2.35",
     "@types/node": "^12.6.1",
-    "api-documenter-yaml-to-antora-asciidoc": "^0.0.0-11",
     "ts-node": "^8.3.0",
     "typescript": "^4.4.3"
   },
@@ -32,6 +29,7 @@
   },
   "files": [
     "lib",
-    "src"
+    "src",
+    "tkt.api.json"
   ]
 }

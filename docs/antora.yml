@@ -3,4 +3,3 @@ version: master
 title: 'tkt'
 nav:
   - modules/ROOT/nav.adoc
-  - modules/api/nav.adoc

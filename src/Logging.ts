@@ -2,6 +2,7 @@ import pino from 'pino'
 
 /**
  * A logger instance created by the {@link (logger:function)} function or the {@link ILogger.child} method.
+ * See {@link https://github.com/pinojs/pino/blob/master/docs/api.md#logger-instance | Pino’s API} for more information.
  * @public
  */
 export interface ILogger {
@@ -51,6 +52,7 @@ export function logger(name: string): ILogger {
 }
 
 /**
+ * Modify the logger’s behavior.
  * @public
  */
 export namespace logger {

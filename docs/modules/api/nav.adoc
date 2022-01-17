@@ -1,4 +1,0 @@
-.API documentation
-* xref:tkt.adoc[tkt]
-** xref:tkt_ICli_interface.adoc[ICli]
-** xref:tkt_ILogger_interface.adoc[ILogger]
